@@ -34,6 +34,7 @@ var Util = (function() {
         return queryString;
     };
 
+    // TODO: Write tests for this: need to add a layer of indirection to window and mock it out.
     var updateUrl = function(url) {
         window.history.replaceState({}, '', url);
     };
