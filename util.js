@@ -12,7 +12,7 @@ var Util = (function() {
         var paramPairs = queryString.split('&');
         paramPairs.forEach(function(val) {
             var param = val.split('=');
-            params[param[0]] = param[1];
+            params[decodeURIComponent(param[0])] = decodeURIComponent(param[1]);
         });
 
         return params;
@@ -24,7 +24,7 @@ var Util = (function() {
         for (var key in params) {
             if (! params.hasOwnProperty(key)) continue;
 
-            queryString += key + '='  + params[key] + '&';
+            queryString += encodeURIComponent(key) + '='  + encodeURIComponent(params[key]) + '&';
         }
 
         if(queryString[queryString.length - 1] == '&') {
@@ -34,6 +34,7 @@ var Util = (function() {
         return queryString;
     };
 
+    // TODO: Write tests for this: need to add a layer of indirection to window and mock it out.
     var updateUrl = function(url) {
         window.history.replaceState({}, '', url);
     };
