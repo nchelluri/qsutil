@@ -21,11 +21,9 @@ var Util = (function() {
     var buildQueryString = function(params) {
         var queryString = '?';
 
-        for (var key in params) {
-            if (! params.hasOwnProperty(key)) continue;
-
+        Object.keys(params).forEach(function(key) {
             queryString += encodeURIComponent(key) + '='  + encodeURIComponent(params[key]) + '&';
-        }
+        });
 
         if(queryString[queryString.length - 1] == '&') {
             queryString = queryString.slice(0, -1);
