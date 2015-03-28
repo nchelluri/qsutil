@@ -11,7 +11,7 @@ Util.queryStringParams('asdf=123&xyz=789');
 Util.queryStringParams('http://www.example.com?asdf=123&xyz=789');
 
 // works with arrays, too - this returns { asdf: ['123', '456'] }
-Util.queryStringParams('?asdf[]=123&asdf[]=456');
+Util.queryStringParams('?asdf%5B%5D=123&asdf%5B%5D=456');
 ```
 
 ### Build a query string from key-value pairs:
@@ -19,7 +19,7 @@ Util.queryStringParams('?asdf[]=123&asdf[]=456');
 // returns '?asdf=123&xyz=789'
 Util.buildQueryString({ asdf: 123, xyz: 789 });
 
-// works with arrays, too - this returns '?asdf[]=123&asdf[]=456&xyz=789'
+// works with arrays, too - this returns '?asdf%5B%5D=123&asdf%5B%5D=456&xyz=789'
 Util.buildQueryString({ asdf: [123, 456], xyz: 789 });
 ```
 
@@ -31,7 +31,7 @@ Util.updateUrl('/');
 
 ### Update a URL with new query string params
 ```javascript
-// both of these return 'http://www.example.com?asdf[]=123&asdf[]=456&xyz=789'
+// both of these return 'http://www.example.com?asdf%5B%5D=123&asdf%5B%5D=456&xyz=789'
 Util.updateQueryString('http://www.example.com', { asdf: [123, 456], xyz: 789 });
 Util.updateQueryString('http://www.example.com?something=else', { asdf: [123, 456], xyz: 789 });
 ```

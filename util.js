@@ -37,7 +37,7 @@ var Util = (function() {
         Object.keys(params).forEach(function(key) {
             if (Array.isArray(params[key])) {
               params[key].forEach(function(value) {
-                queryString += encodeURIComponent(key) + '[]=' + encodeURIComponent(value) + '&';
+                queryString += encodeURIComponent(key + '[]') + '=' + encodeURIComponent(value) + '&';
               });
             } else {
               queryString += encodeURIComponent(key) + '='  + encodeURIComponent(params[key]) + '&';
