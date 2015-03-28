@@ -21,3 +21,7 @@ Changelog
 
 - Added the ability to update a URL's query string using `Util.updateQueryString()`
 - Added the ability to handle arrays when parsing query strings in `Util.queryStringParams()`
+
+## v0.1.4
+
+- Fixed return values when parsing URLs without query strings in `Util.queryStringParams()`

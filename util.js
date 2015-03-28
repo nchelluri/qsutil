@@ -10,8 +10,8 @@ var Util = (function() {
             queryString = queryString.slice(indicatorIndex + 1);
         }
 
-        var paramPairs = queryString.split('&');
-        paramPairs.forEach(function(val) {
+        if (queryString.indexOf('=') !== -1) {
+          queryString.split('&').forEach(function(val) {
             var param = val.split('=');
             var key = decodeURIComponent(param[0]);
             var value = decodeURIComponent(param[1]);
@@ -26,7 +26,8 @@ var Util = (function() {
             } else {
               params[key] = value;
             }
-        });
+          });
+        }
 
         return params;
     };

@@ -13,7 +13,15 @@
                 { 'paramWith<>"\'&Characters': '<script>"quotes" & \'some-other-entities\'</script>' }, 'properties as expected');
         });
 
-      test('queryStringParams: Parsing of a URL', function() {
+      test('queryStringParams: Parsing of a URL without a query string', function() {
+        propEqual(Util.queryStringParams('http://localhost:3000/'), { }, 'properties as expected');
+      });
+
+      test('queryStringParams: Parsing of a URL with an empty query string', function() {
+        propEqual(Util.queryStringParams('http://localhost:3000/?'), { }, 'properties as expected');
+      });
+
+      test('queryStringParams: Parsing of a URL with a non-empty query string', function() {
             propEqual(Util.queryStringParams('http://localhost:3000/?asdf=123&xyz=789'), { asdf: '123', xyz: '789' }, 'properties as expected');
       });
 
