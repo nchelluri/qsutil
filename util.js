@@ -35,7 +35,13 @@ var Util = (function() {
         var queryString = '?';
 
         Object.keys(params).forEach(function(key) {
-            queryString += encodeURIComponent(key) + '='  + encodeURIComponent(params[key]) + '&';
+            if (Array.isArray(params[key])) {
+              params[key].forEach(function(value) {
+                queryString += encodeURIComponent(key + '[]') + '=' + encodeURIComponent(value) + '&';
+              });
+            } else {
+              queryString += encodeURIComponent(key) + '='  + encodeURIComponent(params[key]) + '&';
+            }
         });
 
         if(queryString[queryString.length - 1] == '&') {
@@ -50,9 +56,21 @@ var Util = (function() {
         window.history.replaceState({}, '', url);
     };
 
+    var updateQueryString = function(url, params) {
+        var queryString = buildQueryString(params);
+
+        var indicatorIndex = url.indexOf('?');
+        if (indicatorIndex !== -1) {
+          url = url.substring(0, indicatorIndex);
+        }
+
+        return url + queryString;
+    };
+
     return {
         queryStringParams: queryStringParams,
         buildQueryString: buildQueryString,
-        updateUrl: updateUrl
+        updateUrl: updateUrl,
+        updateQueryString: updateQueryString
     };
 }());
