@@ -11,3 +11,8 @@ Changelog
 ## v0.1.1
 
 - Made some changes per code review, functionality remains the same
+
+## v0.1.2
+
+- Added the ability to pass a URL to `Util.queryStringParams()`
+- Added the parsing of arrays in query strings (like `?ids[]=1&ids[]=2&ids[]=3`)
