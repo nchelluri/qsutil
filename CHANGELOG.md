@@ -17,7 +17,7 @@ Changelog
 - Added the ability to pass a URL to `Util.queryStringParams()`
 - Added the parsing of arrays in query strings (like `?ids[]=1&ids[]=2&ids[]=3`)
 
-# v0.1.3
+## v0.1.3
 
 - Added the ability to update a URL's query string using `Util.updateQueryString()`
 - Added the ability to handle arrays when parsing query strings in `Util.queryStringParams()`
