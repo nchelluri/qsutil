@@ -1,10 +1,10 @@
 (function() {
     (function() {
-        test('queryStringParams: Parsing of QS starting with "?"', function () {
+        test('queryStringParams: Parsing of QS starting with "?"', function() {
             propEqual(Util.queryStringParams('?asdf=123&xyz=789'), { asdf: '123', xyz: '789' }, 'properties as expected');
         });
 
-        test('queryStringParams: Parsing of QS that does not start with "?"', function () {
+        test('queryStringParams: Parsing of QS that does not start with "?"', function() {
             propEqual(Util.queryStringParams('asdf=123&xyz=789'), { asdf: '123', xyz: '789' }, 'properties as expected');
         });
 
@@ -12,6 +12,18 @@
             propEqual(Util.queryStringParams('paramWith%3C%3E%22\'%26Characters=%3Cscript%3E%22quotes%22%20%26%20\'some-other-entities\'%3C%2Fscript%3E'),
                 { 'paramWith<>"\'&Characters': '<script>"quotes" & \'some-other-entities\'</script>' }, 'properties as expected');
         });
+
+      test('queryStringParams: Parsing of a URL', function() {
+            propEqual(Util.queryStringParams('http://localhost:3000/?asdf=123&xyz=789'), { asdf: '123', xyz: '789' })
+      });
+
+      test('queryStringParams: Parsing of an array with one element', function() {
+        propEqual(Util.queryStringParams('http://localhost:3000/?asdf[]=123&xyz=456'), { asdf: ['123'], xyz: '456' })
+      });
+
+      test('queryStringParams: Parsing of an array with two elements', function() {
+        propEqual(Util.queryStringParams('http://localhost:3000/?asdf[]=123&asdf[]=789&xyz=456'), { asdf: ['123', '789'], xyz: '456' })
+      });
     })();
 
     (function() {
@@ -19,7 +31,7 @@
             equal(Util.buildQueryString({ asdf: 123, xyz: 789 }), '?asdf=123&xyz=789', 'string as expected');
         });
 
-        test('buildQueryString: Builds a QS with key/value pairs containing "<", ">", "&", "\\"", and "\'" characters', function () {
+        test('buildQueryString: Builds a QS with key/value pairs containing "<", ">", "&", "\\"", and "\'" characters', function() {
             equal(Util.buildQueryString({ 'paramWith<>"\'&Characters': '<script>"quotes" & \'some-other-entities\'</script>' }),
                 '?paramWith%3C%3E%22\'%26Characters=%3Cscript%3E%22quotes%22%20%26%20\'some-other-entities\'%3C%2Fscript%3E',
                 'string as expected');

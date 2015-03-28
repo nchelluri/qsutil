@@ -5,14 +5,27 @@ var Util = (function() {
             return params;
         }
 
-        if (queryString[0] == '?') {
-            queryString = queryString.slice(1);
+        var indicatorIndex = queryString.indexOf('?');
+        if (indicatorIndex !== -1) {
+            queryString = queryString.slice(indicatorIndex + 1);
         }
 
         var paramPairs = queryString.split('&');
         paramPairs.forEach(function(val) {
             var param = val.split('=');
-            params[decodeURIComponent(param[0])] = decodeURIComponent(param[1]);
+            var key = decodeURIComponent(param[0]);
+            var value = decodeURIComponent(param[1]);
+
+            if (key.slice(-2) == '[]') {
+              key = key.slice(0, -2);
+              if (Array.isArray(params[key])) {
+                params[key].push(value);
+              } else {
+                params[key] = [value];
+              }
+            } else {
+              params[key] = value;
+            }
         });
 
         return params;
