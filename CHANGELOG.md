@@ -25,3 +25,8 @@ Changelog
 ## v0.1.4
 
 - Fixed return values when parsing URLs without query strings in `Util.queryStringParams()`
+
+## v0.1.5
+
+- Renamed the library to `QsUtil`, since that's what it's for
+- Minor doc and tests improvements
