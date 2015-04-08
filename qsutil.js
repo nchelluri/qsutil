@@ -1,4 +1,4 @@
-var Util = (function() {
+var QsUtil = (function() {
     var queryStringParams = function(queryString) {
         var params = {};
         if (queryString.length == 0) {
@@ -52,11 +52,6 @@ var Util = (function() {
         return queryString;
     };
 
-    // TODO: Write tests for this: need to add a layer of indirection to window and mock it out.
-    var updateUrl = function(url) {
-        window.history.replaceState({}, '', url);
-    };
-
     var updateQueryString = function(url, params) {
         var queryString = buildQueryString(params);
 
@@ -68,10 +63,14 @@ var Util = (function() {
         return url + queryString;
     };
 
-    return {
+  var replaceLocation = function(url) {
+    window.history.replaceState;({}, '', url);
+  };
+
+  return {
         queryStringParams: queryStringParams,
         buildQueryString: buildQueryString,
-        updateUrl: updateUrl,
-        updateQueryString: updateQueryString
+        updateQueryString: updateQueryString,
+        replaceLocation: replaceLocation
     };
 }());
