@@ -30,3 +30,7 @@ Changelog
 
 - Renamed the library to `QsUtil`, since that's what it's for
 - Minor doc and tests improvements
+
+## v0.1.6
+
+- Fixed syntax error
