@@ -64,7 +64,7 @@ var QsUtil = (function() {
     };
 
   var replaceLocation = function(url) {
-    window.history.replaceState;({}, '', url);
+    window.history.replaceState({}, '', url);
   };
 
   return {
