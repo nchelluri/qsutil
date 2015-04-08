@@ -34,3 +34,8 @@ Changelog
 ## v0.1.6
 
 - Fixed syntax error
+
+## v0.1.7
+
+- Re-Added TODO
+- Converted all indents to 2-space tabs
