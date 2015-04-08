@@ -63,6 +63,7 @@ var QsUtil = (function() {
         return url + queryString;
     };
 
+  // TODO: Find a way to test this.
   var replaceLocation = function(url) {
     window.history.replaceState({}, '', url);
   };
