@@ -39,3 +39,9 @@ Changelog
 
 - Re-Added TODO
 - Converted all indents to 2-space tabs
+
+## v0.1.8
+
+- Added `QsUtil.replaceLocationRemovingParam()` to update the browser's address bar and history: this core functionality was all I have ever used this library for, so I made it a first class ability.
+- Added tests for `QsUtil.replaceLocation()`
+- Empty query strings are now created as `''` instead of `'?'`
