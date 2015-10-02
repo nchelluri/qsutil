@@ -47,6 +47,8 @@ var QsUtil = (function() {
 
     if(queryString[queryString.length - 1] == '&') {
       queryString = queryString.slice(0, -1);
+    } else if (queryString === '?') {
+      queryString = '';
     }
 
     return queryString;
@@ -63,15 +65,26 @@ var QsUtil = (function() {
     return url + queryString;
   };
 
-  // TODO: Find a way to test this.
   var replaceLocation = function(url) {
     window.history.replaceState({}, '', url);
+  };
+
+  var replaceLocationRemovingParam = function(param) {
+    replaceLocation(removeParamFromUrl(window.location.toString(), param));
+  };
+
+  var removeParamFromUrl = function(url, param) {
+    var params = queryStringParams(url);
+    delete params[param];
+    return updateQueryString(url, params);
   };
 
   return {
     queryStringParams: queryStringParams,
     buildQueryString: buildQueryString,
     updateQueryString: updateQueryString,
-    replaceLocation: replaceLocation
+    removeParamFromUrl: removeParamFromUrl,
+    replaceLocation: replaceLocation,
+    replaceLocationRemovingParam: replaceLocationRemovingParam
   };
 }());
